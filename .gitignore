@@ -1,0 +1,12 @@
+.venv/
+chroma_db/
+data/uploads/
+data/patient/
+logs/
+.env
+__pycache__/
+*.pyc
+.streamlit/
+*.pem
+*.key
+.aws/

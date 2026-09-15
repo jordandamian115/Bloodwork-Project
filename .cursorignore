@@ -1,0 +1,6 @@
+.venv/
+chroma_db/
+knowledge/documents/
+logs/
+data/
+*.pdf

@@ -1,0 +1,417 @@
+# Curated public sources. teaching field = what the RAG should learn from each page.
+# Run: python -m knowledge.ingest
+
+sources:
+  - id: nhlbi-blood-tests
+    cluster: core-panels
+    title: NHLBI Blood Tests overview
+    url: https://www.nhlbi.nih.gov/health/blood-tests
+    topics: [cbc, bmp, lipids, enzymes, reference-ranges]
+    teaches: Overview of CBC, chemistry/BMP, lipids, enzymes; adult CBC ranges; what high/low RBC, WBC, platelets, hemoglobin, hematocrit, MCV indicate.
+
+  - id: nhlbi-types
+    cluster: core-panels
+    title: NHLBI Types of Blood Tests
+    url: https://www.nhlbi.nih.gov/node/3551
+    topics: [cbc, chemistry, heart-risk]
+    teaches: Types of tests (CBC, chemistry, enzyme, heart-risk panels); glucose, calcium, electrolytes, BUN/creatinine, troponin/CK-MB, lipoprotein panel and fasting.
+
+  - id: medlineplus-cmp
+    cluster: core-panels
+    title: MedlinePlus Comprehensive Metabolic Panel
+    url: https://medlineplus.gov/ency/article/003468.htm
+    topics: [cmp, kidney, liver, glucose, electrolytes]
+    teaches: CMP components, typical adult ranges, why ordered for kidney/liver/glucose/electrolytes; lab-to-lab range variation.
+
+  - id: ncbi-normal-ranges
+    cluster: core-panels
+    title: NCBI Bookshelf Normal Reference Ranges
+    url: https://www.ncbi.nlm.nih.gov/books/NBK615342/
+    topics: [reference-ranges, thyroid, ua, fsh, lh]
+    teaches: Appendix ranges for metabolic, liver, thyroid, urinalysis, iron/ferritin, lipids, FSH/LH (sex- and cycle-stratified).
+
+  - id: academic-pathology-labs
+    cluster: core-panels
+    title: Essential Laboratory Tests for Medical Education
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC9483580/
+    topics: [cbc, hormones, renal, hepatic]
+    teaches: Detailed descriptions and ranges for CBC components, testosterone, estradiol, cortisol, renal/hepatic markers.
+
+  - id: cdc-nhanes-tst
+    cluster: hormones
+    title: CDC NHANES Sex Steroid Hormone Panel (TST)
+    url: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/TST_L.htm
+    topics: [testosterone, shbg, estradiol, fsh, lh, dheas, progesterone]
+    teaches: Physiology and measurement of SHBG, total testosterone, estradiol, FSH, LH, progesterone, DHEAS.
+
+  - id: endotext-testicular
+    cluster: hormones
+    title: Endotext Laboratory Assessment of Testicular Function
+    url: https://www.endotext.org/wp-content/uploads/pdfs/laboratory-assessment-of-testicular-function-2.pdf
+    topics: [testosterone, shbg, assays]
+    teaches: Total/free/bioavailable testosterone, SHBG role, assay issues, clinical interpretation in men.
+
+  - id: pmc-endocrine-pitfalls
+    cluster: hormones
+    title: Common Pitfalls in the Interpretation of Endocrine Tests
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC8453144/
+    topics: [testosterone, shbg, lh, fsh]
+    teaches: Testosterone sampling timing, SHBG modifiers, free T calculation, LH/FSH use.
+
+  - id: pmc-steroid-diagnostics
+    cluster: hormones
+    title: Steroid Diagnostics Reference Ranges
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC8603733/
+    topics: [lc-ms, cortisol, estradiol, testosterone]
+    teaches: LC-MS/MS ranges and roles for testosterone, free T, estradiol, pregnenolone, cortisol.
+
+  - id: accessmedicine-lab-values
+    cluster: hormones
+    title: Laposata Clinical Laboratory Reference Values (AccessMedicine)
+    url: https://accessmedicine.mhmedical.com/content.aspx?bookid=2503&sectionid=201361245
+    topics: [cortisol, estradiol, testosterone, homocysteine, magnesium]
+    teaches: Tabulated ranges for cortisol by time of day, estradiol by sex/status, testosterone, SHBG-related, homocysteine, magnesium. Paywalled — ingest may skip; use MedlinePlus/NCBI tables as public stand-ins.
+    skip_fetch: false
+
+  - id: pmc-magnesium-status
+    cluster: micronutrients
+    title: Interpreting magnesium status (PMID 28806179)
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5812344/
+    topics: [magnesium, rbc-mg, serum-mg]
+    teaches: Serum/plasma vs urinary/dietary magnesium, limitations of a single serum value, ~0.75–0.85 mmol/L grey zone, combined assessment.
+
+  - id: pmc-magnesium-ri-standard
+    cluster: micronutrients
+    title: Standardization of serum magnesium reference ranges
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC9186275/
+    topics: [magnesium, reference-intervals]
+    teaches: Proposed hypomagnesemia cutoff near 0.85 mmol/L (2.07 mg/dL); lab range variability.
+
+  - id: pmc-micronutrients
+    cluster: micronutrients
+    title: Micronutrient status cutoffs
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC10918648/
+    topics: [ferritin, iron, zinc]
+    teaches: Iron/zinc and related biomarker cutoffs relevant to ferritin/iron studies.
+
+  - id: medlineplus-magnesium
+    cluster: micronutrients
+    title: MedlinePlus Magnesium Blood Test
+    url: https://medlineplus.gov/lab-tests/magnesium-blood-test/
+    topics: [magnesium]
+    teaches: Why magnesium is ordered, low/high meaning, typical preparation.
+
+  - id: medlineplus-homocysteine
+    cluster: micronutrients
+    title: MedlinePlus Homocysteine Test
+    url: https://medlineplus.gov/lab-tests/homocysteine-test/
+    topics: [homocysteine]
+    teaches: Homocysteine as a CVD/B-vitamin related marker; typical reasons for testing. Cross-check AccessMedicine 4–12 µmol/L typical band when that table is unavailable.
+
+  - id: pmc-cv-biomarkers-ht
+    cluster: lipids
+    title: Cardiovascular biomarkers after hormone therapy
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC11972549/
+    topics: [ldl, hdl, lpa, insulin]
+    teaches: Long-term changes in LDL-C, HDL-C, triglycerides, Lp(a), insulin/HOMA-IR after hormone therapy.
+
+  - id: medlineplus-cholesterol
+    cluster: lipids
+    title: MedlinePlus Cholesterol Levels
+    url: https://medlineplus.gov/lab-tests/cholesterol-levels/
+    topics: [lipids, ldl, hdl, triglycerides]
+    teaches: Lipid panel interpretation aligned with NIH-style desirable levels (total/LDL/HDL/TG).
+
+  - id: testing-apob
+    cluster: lipids
+    title: Testing.com Apolipoprotein B
+    url: https://www.nhlbi.nih.gov/health/blood-tests
+    topics: [apob]
+    teaches: ApoB as particle-number marker; desirable levels used in clinical summaries.
+
+  - id: testing-lpa
+    cluster: lipids
+    title: Testing.com Lipoprotein (a)
+    url: https://www.testing.com/tests/lipoprotein-a/
+    topics: [lpa]
+    teaches: Lp(a) as genetically influenced residual CVD risk marker.
+
+  - id: medlineplus-crp
+    cluster: lipids
+    title: MedlinePlus C-reactive protein (CRP) test
+    url: https://medlineplus.gov/lab-tests/c-reactive-protein-crp-test/
+    topics: [hs-crp, inflammation]
+    teaches: CRP/hs-CRP for inflammation and heart-risk context.
+
+  - id: aarp-routine-labs
+    cluster: kidney
+    title: AARP smart guide to routine lab work
+    url: https://www.aarp.org/health/conditions-treatments/smart-guide-routine-lab-work/
+    topics: [cystatin-c, egfr]
+    teaches: Cystatin C utility vs creatinine and eGFR interpretation in routine labs.
+
+  - id: pmc-cystatin-creatinine-muscle
+    cluster: kidney
+    title: Creatinine and cystatin C in testosterone-induced muscle hypertrophy
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC11483778/
+    topics: [cystatin-c, creatinine, egfr]
+    teaches: Why creatinine and cystatin C can disagree when muscle mass changes; dual measurement.
+
+  - id: medlineplus-egfr
+    cluster: kidney
+    title: MedlinePlus eGFR
+    url: https://medlineplus.gov/lab-tests/glomerular-filtration-rate-gfr-test/
+    topics: [egfr, kidney]
+    teaches: eGFR reporting, kidney staging language, limits of a single creatinine-based estimate.
+
+  - id: medlineplus-creatinine
+    cluster: kidney
+    title: MedlinePlus Creatinine Test
+    url: https://medlineplus.gov/lab-tests/creatinine-test/
+    topics: [creatinine, kidney]
+    teaches: Serum creatinine, muscle-mass effects, pairing with eGFR.
+
+  - id: medlineplus-cystatin-c
+    cluster: kidney
+    title: MedlinePlus Cystatin C Test
+    url: https://medlineplus.gov/lab-tests/glomerular-filtration-rate-gfr-test/
+    topics: [cystatin-c, egfr]
+    teaches: When cystatin C is added and how it differs from creatinine.
+
+  - id: pmc-ri-28-analytes
+    cluster: reference-intervals
+    title: Multicenter reference intervals for 28 analytes
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4782874/
+    topics: [reference-intervals, chemistry]
+    teaches: Sex/age-partitioned RIs for common chemistry analytes; IFCC-aligned methodology.
+
+  - id: pmc-age-groups-ri
+    cluster: reference-intervals
+    title: Age-group reference intervals
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC8926536/
+    topics: [age-stratified, thyroid, ferritin]
+    teaches: Male age-stratified ranges for glucose, AST/ALT, BUN, Cr, Hb, TSH, FT3/FT4, ferritin.
+
+  - id: pmc-australasian-ri
+    cluster: reference-intervals
+    title: Harmonising adult and paediatric RIs
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4310061/
+    topics: [electrolytes, creatinine, magnesium]
+    teaches: Australasian consensus RIs including electrolytes, creatinine, magnesium, ALP.
+
+  - id: pmc-renal-hepatic-ri
+    cluster: reference-intervals
+    title: Renal and hepatic function reference intervals
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC6807141/
+    topics: [alt, ast, alp, albumin]
+    teaches: Age/gender RIs for ALT/AST/ALP/GGT, albumin, bilirubin.
+
+  - id: clinchem-personalized-ri
+    cluster: reference-intervals
+    title: Personalized and population-based RIs (Clin Chem)
+    url: https://academic.oup.com/clinchem/article/69/9/1009/7234352
+    topics: [testosterone, psa, lipids, cbc]
+    teaches: Comparative RIs including testosterone, PSA, lipids, RBC, hemoglobin. May be paywalled; ingest stores abstract if full text blocked.
+
+  - id: pmc-dehydration
+    cluster: complementary
+    title: Dehydration consensus lab markers
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC7877883/
+    topics: [bun, creatinine, osmolality]
+    teaches: BUN:Cr, osmolality and related markers for volume/electrolyte interpretation.
+
+  - id: medlineplus-cbc
+    cluster: complementary
+    title: MedlinePlus Complete Blood Count
+    url: https://medlineplus.gov/lab-tests/complete-blood-count-cbc/
+    topics: [cbc]
+    teaches: Individual CBC component encyclopedia entry.
+
+  - id: medlineplus-tsh
+    cluster: complementary
+    title: MedlinePlus TSH test
+    url: https://medlineplus.gov/lab-tests/tsh-thyroid-stimulating-hormone-test/
+    topics: [tsh, thyroid]
+    teaches: TSH interpretation and when free T4 is added.
+
+  - id: medlineplus-t4
+    cluster: complementary
+    title: MedlinePlus Thyroxine (T4) test
+    url: https://medlineplus.gov/lab-tests/thyroxine-t4-test/
+    topics: [free-t4, thyroid]
+    teaches: Free/total T4 in thyroid workups.
+
+  - id: medlineplus-vitamin-d
+    cluster: complementary
+    title: MedlinePlus Vitamin D test
+    url: https://medlineplus.gov/lab-tests/vitamin-d-test/
+    topics: [vitamin-d]
+    teaches: 25-OH vitamin D testing and deficiency language.
+
+  - id: medlineplus-ferritin
+    cluster: complementary
+    title: MedlinePlus Ferritin blood test
+    url: https://medlineplus.gov/lab-tests/ferritin-blood-test/
+    topics: [ferritin, iron]
+    teaches: Ferritin as iron stores marker; inflammation caveat.
+
+  - id: medlineplus-iron
+    cluster: complementary
+    title: MedlinePlus Iron tests
+    url: https://medlineplus.gov/lab-tests/iron-tests/
+    topics: [iron, tibc, transferrin]
+    teaches: Iron studies panel (serum iron, TIBC, transferrin saturation).
+
+  - id: medlineplus-insulin
+    cluster: complementary
+    title: MedlinePlus Insulin in blood
+    url: https://medlineplus.gov/lab-tests/insulin-in-blood/
+    topics: [insulin]
+    teaches: Insulin testing context (not a standalone diabetes diagnosis).
+
+  - id: medlineplus-ua
+    cluster: complementary
+    title: MedlinePlus Urinalysis
+    url: https://medlineplus.gov/urinalysis.html
+    topics: [urinalysis]
+    teaches: UA components and when they accompany bloodwork.
+
+  - id: medlineplus-testosterone
+    cluster: hormones
+    title: MedlinePlus Testosterone levels test
+    url: https://medlineplus.gov/lab-tests/testosterone-levels-test/
+    topics: [testosterone]
+    teaches: Total testosterone testing; morning draw; sex-specific interpretation.
+
+  - id: cdc-hormone-standardization
+    cluster: hormones
+    title: CDC Hormone Standardization Program
+    url: https://www.cdc.gov/clinical-standardization-programs/php/hormones/index.html
+    topics: [testosterone, estradiol, assays]
+    teaches: Assay quality for testosterone/estradiol (CDC HoSt program).
+
+  - id: endocrine-society-hypogonadism
+    cluster: hormones
+    title: Endocrine Society testosterone deficiency guidance (public summary page)
+    url: https://www.endocrine.org/clinical-practice-guidelines/testosterone-therapy
+    topics: [testosterone, hypogonadism, shbg]
+    teaches: Hypogonadism evaluation; morning total T, repeat confirmation; literature thresholds often ~264–300 ng/dL (CDC-harmonized 264 ng/dL); free T/SHBG when SHBG abnormal or borderline total T.
+
+  - id: ashp-lab-data-catalog
+    cluster: complementary
+    title: ASHP Basic Skills in Interpreting Laboratory Data (catalog)
+    url: https://www.ncbi.nlm.nih.gov/nlmcatalog/489664
+    topics: [lab-interpretation]
+    teaches: Bibliographic pointer only (copyrighted book). Do not store book text; use as a reading-list item for endocrine/renal/hematologic/nutrition markers.
+
+  - id: pmc-10962511
+    cluster: glucose
+    title: Metformin-related PMC article PMC10962511
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC10962511/
+    topics: [metformin, prediabetes, diabetes]
+    teaches: Metformin for prediabetes / type 2 diabetes prevention or treatment alongside lifestyle.
+
+  - id: pmc-6517163
+    cluster: glucose
+    title: Metformin-related PMC article PMC6517163
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC6517163/
+    topics: [metformin, diabetes]
+    teaches: Metformin evidence in glycemic prevention or treatment with lifestyle.
+
+  - id: statpearls-metformin
+    cluster: glucose
+    title: NCBI StatPearls Metformin (NBK305894)
+    url: https://www.ncbi.nlm.nih.gov/books/NBK305894/
+    topics: [metformin, diabetes]
+    teaches: Metformin pharmacology, indications for type 2 diabetes / prevention context, lifestyle adjunct, cautions.
+
+  - id: pmc-5709233
+    cluster: glucose
+    title: Berberine-related PMC article PMC5709233
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5709233/
+    topics: [berberine, glucose]
+    teaches: Berberine glycemic effects in trials, alone or adjunctive.
+
+  - id: statpearls-berberine
+    cluster: glucose
+    title: NCBI Bookshelf berberine (NBK518983)
+    url: https://www.ncbi.nlm.nih.gov/books/NBK518983/
+    topics: [berberine, glucose]
+    teaches: Berberine as a supplement with comparable glycemic effects in some trials; safety caveats.
+
+  - id: pmc-2410097
+    cluster: diet
+    title: Dietary pattern PMC article PMC2410097
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC2410097/
+    topics: [mediterranean, dash, diet, fiber]
+    teaches: Dietary patterns (Mediterranean, DASH, fiber-focused, selective carbohydrate approaches).
+
+  - id: pmc-11617981
+    cluster: diet
+    title: Dietary pattern PMC article PMC11617981
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC11617981/
+    topics: [diet, diabetes, fiber]
+    teaches: Dietary patterns for metabolic health; Mediterranean/DASH/fiber/carb quality.
+
+  - id: ada-eating-diabetes
+    cluster: diet
+    title: ADA eating for diabetes management
+    url: https://diabetes.org/food-nutrition/eating-for-diabetes-management
+    topics: [diet, diabetes]
+    teaches: Practical eating patterns for diabetes management (ADA).
+
+  - id: medlineplus-diabetic-diet
+    cluster: diet
+    title: MedlinePlus diabetic diet
+    url: https://medlineplus.gov/diabeticdiet.html
+    topics: [diet, diabetes]
+    teaches: Diabetic diet encyclopedia guidance.
+
+  - id: pmc-7685565
+    cluster: lipids
+    title: Statin / ACC-AHA risk-enhancing factors PMC7685565
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC7685565/
+    topics: [statin, apob, lpa, hs-crp, ascvd]
+    teaches: Statin therapy and risk-enhancing factors including ApoB, Lp(a), hs-CRP; when guidelines intensify therapy beyond lifestyle.
+
+  - id: lpi-homocysteine
+    cluster: micronutrients
+    title: LPI high homocysteine
+    url: https://lpi.oregonstate.edu/mic/health-disease/high-homocysteine
+    topics: [homocysteine, folate, b12, b6]
+    teaches: B-vitamin supplementation (folate, B6, B12) to lower elevated homocysteine; clinical context and limits.
+
+  - id: statpearls-homocysteine
+    cluster: micronutrients
+    title: NCBI StatPearls hyperhomocysteinemia
+    url: https://www.ncbi.nlm.nih.gov/books/NBK554408/
+    topics: [homocysteine, folate, b12]
+    teaches: Hyperhomocysteinemia, related risks, and B-vitamin lowering of plasma levels.
+
+  - id: pmc-11212738
+    cluster: hormones
+    title: Weight loss and hypogonadism PMC11212738
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC11212738/
+    topics: [testosterone, estradiol, shbg, obesity]
+    teaches: Weight loss/lifestyle for obesity-related low testosterone and elevated estradiol (reversible secondary hypogonadism); T/free T up, estradiol down, SHBG via reduced aromatase in adipose.
+
+  - id: pmc-12342380
+    cluster: hormones
+    title: Weight loss and sex steroids PMC12342380
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC12342380/
+    topics: [testosterone, estradiol, obesity]
+    teaches: Weight reduction effects on testosterone, estradiol, SHBG in obesity-related hypogonadism.
+
+  - id: pmc-7237335
+    cluster: hormones
+    title: Aromatase inhibitors in men PMC7237335
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC7237335/
+    topics: [anastrozole, estradiol, trt, testosterone]
+    teaches: Aromatase inhibitors (e.g. anastrozole) for symptomatic elevated estradiol in men, including exogenous testosterone/TRT contexts; T:E ratio; clinician-supervised use only.
+
+  - id: pmc-5010627
+    cluster: hormones
+    title: Aromatase inhibitors / hypogonadism survey PMC5010627
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5010627/
+    topics: [aromatase, estradiol, hypogonadism, trt]
+    teaches: Clinical survey/review of AI use in hypogonadism/TRT to improve T:E ratio.
