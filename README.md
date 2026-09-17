@@ -10,6 +10,8 @@ It is **not** a medical device, **not** a diagnosis engine, and **not** HIPAA-ce
 
 Index the curated corpus, parse a lab PDF in memory, then ask scoped questions with sources.
 
+System design, data flow, trust boundaries, and AWS mapping: **[ARCHITECTURE.md](ARCHITECTURE.md)**.
+
 ## What this repo keeps (from the prior RAG app)
 
 - PDF load → chunk → FAISS → Ollama retrieve-and-generate
@@ -46,7 +48,7 @@ Optional production path (HIPAA-eligible services + BAA):
 | Knowledge hygiene | redact before FAISS ingest | Macie / Comprehend scan pre-KB |
 | Encryption & access | gitignored uploads, local-first | KMS, IAM least privilege, private VPC |
 
-Set `PHI_BACKEND=comprehend_medical` and/or `BEDROCK_APPLY_GUARDRAIL=true` when credentials and a BAA exist. See `.env.example`.
+Set `PHI_BACKEND=comprehend_medical` and/or `BEDROCK_APPLY_GUARDRAIL=true` when credentials and a BAA exist. See `.env.example`. Detail and threat notes: [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Setup
 
@@ -82,6 +84,7 @@ An eval harness scores scope (right markers), guardrails, retrieval, and whether
 ```text
 Bloodwork-Project/
 ├── app.py
+├── ARCHITECTURE.md   # data flow, trust boundaries, AWS analogue
 ├── agents/           # lab parse + interpret coordinator
 ├── rag/              # load, index, chain
 ├── security/         # guardrails, PHI, audit, AWS adapters
