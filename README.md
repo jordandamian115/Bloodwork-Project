@@ -69,7 +69,7 @@ streamlit run app.py
 
 If indexing fails with a `/tokenize` connection error, that was Chroma’s Windows sidecar — this project now uses FAISS. Install `faiss-cpu`, restart Streamlit, and retry. You do not need to change browsers.
 
-Limited post-training / eval later will reduce hallucinations; this skeleton already refuses ungrounded ranges.
+An eval harness scores scope (right markers), guardrails, retrieval, and whether named therapies appear only if they were retrieved. See **Eval**.
 
 ## Layout
 
@@ -80,16 +80,32 @@ Bloodwork-Project/
 ├── rag/              # load, index, chain
 ├── security/         # guardrails, PHI, audit, AWS adapters
 ├── knowledge/        # source catalog + documents/
+├── evals/            # YAML cases + scoring harness
 ├── tests/
+├── .github/workflows/
 └── config/
 ```
 
 ## Tests
 
+GitHub Actions runs the same command on every push to `main` and on pull requests. Unit tests do not need Ollama.
+
 ```powershell
-python tests/test_guardrails.py
-python tests/test_phi.py
+python -m pip install pytest pyyaml
+python -m pytest
 ```
+
+## Eval
+
+Cases live in `evals/cases.yaml` (synthetic Quest-style panel, no real PHI). Offline checks do not need Ollama.
+
+```powershell
+python -m evals.runner
+python -m evals.runner --retrieve
+python -m evals.runner --live
+```
+
+`--retrieve` / `--live` need a local FAISS index (`Index curated corpus`) and Ollama. Retrieval checks that metformin, berberine, statin/ApoB, and similar terms actually come back from the corpus. Live checks that a testosterone question does not recite LDL, that zinc ranges are refused if missing, and that named therapies are not invented outside retrieved context.
 
 ## Knowledge corpus
 

@@ -6,23 +6,8 @@ from security.audit import log_event
 from security.aws_adapters import get_phi_detector, optional_bedrock_check
 from security.guardrails import check_input, sanitize_output
 
-import re
-
-from agents.markers import QUERY_HINTS
+from agents.markers import expand_retrieval_query
 from rag.chain import chain_inputs
-
-
-def expand_retrieval_query(question: str, lab_context: str) -> str:
-    extra: list[str] = []
-    lower = question.lower()
-    for pattern, hint in QUERY_HINTS:
-        if re.search(pattern, lower):
-            extra.append(hint)
-    if "cystatin" in lower and "cystatin" not in lab_context.lower():
-        extra.append("Marker may be listed as CysC or Cystatin-C on lab reports.")
-    if not extra:
-        return question
-    return question + "\n\nRetrieval hints: " + " ".join(extra)
 
 
 def run_interpretation(chain, question: str, lab_context: str, indexed_file: str = "") -> dict:

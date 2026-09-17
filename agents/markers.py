@@ -114,7 +114,7 @@ FOCUS_GROUPS: list[tuple[str, tuple[str, ...] | None]] = [
     (r"hemoglobin|\bhgb\b|\bhb\b", ("hemoglobin",)),
     (r"\bwbc\b|white blood", ("wbc",)),
     (r"platelet", ("platelets",)),
-    (r"ldl|hdl|apo|lp\(a\)|lipid|statin|triglyceride", ("ldl", "hdl", "triglycerides", "apob", "lpa")),
+    (r"\bldl\b|\bhdl\b|\bapo\b|lp\(\s*a\s*\)|\blipid|\bstatins?\b|triglyceride", ("ldl", "hdl", "triglycerides", "apob", "lpa")),
     (r"glucose|a1c|prediabetes|metformin|berberine", ("glucose",)),
     (r"homocysteine|folate|b12|b6", ("homocysteine",)),
     (r"ferritin|\biron\b", ("ferritin",)),
@@ -147,7 +147,7 @@ QUERY_HINTS = (
     (r"hematocrit|\bhct\b", "hematocrit HCT CBC red blood cells hemoglobin"),
     (r"egfr|creatinine|kidney", "eGFR creatinine cystatin C kidney"),
     (r"testosterone|\bfree t\b", "total testosterone free testosterone bioavailable testosterone"),
-    (r"ldl|hdl|apo|lp\(a\)|lipid|statin", "LDL HDL triglycerides ApoB Lp(a) hs-CRP statin ACC AHA risk-enhancing"),
+    (r"\bldl\b|\bhdl\b|\bapo\b|lp\(\s*a\s*\)|\blipid|\bstatins?\b", "LDL HDL triglycerides ApoB Lp(a) hs-CRP statin ACC AHA risk-enhancing"),
     (r"glucose|a1c|prediabetes|metformin|berberine", "metformin berberine prediabetes type 2 diabetes diet Mediterranean DASH"),
     (r"homocysteine|folate|b12|b6", "homocysteine folate vitamin B12 B6 supplementation"),
     (
@@ -155,3 +155,16 @@ QUERY_HINTS = (
         "estradiol aromatase inhibitor anastrozole TRT hypogonadism T:E ratio weight loss SHBG",
     ),
 )
+
+
+def expand_retrieval_query(question: str, lab_context: str) -> str:
+    extra: list[str] = []
+    lower = question.lower()
+    for pattern, hint in QUERY_HINTS:
+        if re.search(pattern, lower):
+            extra.append(hint)
+    if "cystatin" in lower and "cystatin" not in lab_context.lower():
+        extra.append("Marker may be listed as CysC or Cystatin-C on lab reports.")
+    if not extra:
+        return question
+    return question + "\n\nRetrieval hints: " + " ".join(extra)

@@ -1,9 +1,4 @@
-"""Guardrail checks. Run: python tests/test_guardrails.py"""
-
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import pytest
 
 from security.guardrails import check_input, sanitize_output
 
@@ -21,25 +16,35 @@ SAFE_QUESTIONS = [
 ]
 
 
-def main() -> None:
-    print("INJECTION / DENIED (expect blocked)")
-    for q in INJECTION_ATTEMPTS:
-        result = check_input(q)
-        status = "BLOCKED" if not result.allowed else "ALLOWED (unexpected)"
-        print(f"[{status}] {q[:70]} ({result.reason})")
-
-    print("\nSAFE (expect allowed)")
-    for q in SAFE_QUESTIONS:
-        result = check_input(q)
-        status = "ALLOWED" if result.allowed else "BLOCKED (unexpected)"
-        print(f"[{status}] {q}")
-
-    sample = "Email jane@clinic.com SSN 123-45-6789"
-    clean, warnings = sanitize_output(sample)
-    print("\nOUTPUT REDACTION")
-    print("After:", clean)
-    print("Warnings:", warnings)
+@pytest.mark.parametrize("question", INJECTION_ATTEMPTS)
+def test_injection_blocked(question: str) -> None:
+    result = check_input(question)
+    assert not result.allowed
+    assert result.reason in {"prompt_injection_detected"} or result.reason.startswith(
+        "denied_topic:"
+    )
 
 
-if __name__ == "__main__":
-    main()
+def test_unlicensed_prescription_blocked() -> None:
+    result = check_input("Write me a prescription for metformin 1000 mg.")
+    assert not result.allowed
+    assert "denied_topic" in result.reason
+
+
+@pytest.mark.parametrize("question", SAFE_QUESTIONS)
+def test_safe_questions_allowed(question: str) -> None:
+    result = check_input(question)
+    assert result.allowed, result.reason
+
+
+def test_empty_input_blocked() -> None:
+    result = check_input("   ")
+    assert not result.allowed
+    assert result.reason == "empty_input"
+
+
+def test_output_redacts_email_and_ssn() -> None:
+    clean, warnings = sanitize_output("Email jane@clinic.com SSN 123-45-6789")
+    assert "jane@clinic.com" not in clean
+    assert "123-45-6789" not in clean
+    assert any("redacted_phi" in w for w in warnings)

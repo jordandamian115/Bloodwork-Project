@@ -9,3 +9,4 @@ pypdf
 python-dotenv
 pyyaml
 boto3
+pytest

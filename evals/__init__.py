@@ -1,0 +1,1 @@
+# Eval harness for scope, guardrails, retrieval, and grounding.

@@ -10,3 +10,4 @@ __pycache__/
 *.pem
 *.key
 .aws/
+.pytest_cache/
