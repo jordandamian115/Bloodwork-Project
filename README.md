@@ -8,7 +8,7 @@ It is **not** a medical device, **not** a diagnosis engine, and **not** HIPAA-ce
 
 **[Loom walkthrough of the Bloodwork Project](https://www.loom.com/share/3ee0296261524997acd4a0151ce18b53)**
 
-Index the curated corpus, parse a lab PDF in memory, then ask scoped questions with sources.
+
 
 System design, data flow, trust boundaries, and AWS mapping: **[ARCHITECTURE.md](ARCHITECTURE.md)**.
 
