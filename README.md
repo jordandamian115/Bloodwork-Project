@@ -12,9 +12,9 @@ Index the curated corpus, parse a lab PDF in memory, then ask scoped questions w
 
 System design, data flow, trust boundaries, and AWS mapping: **[ARCHITECTURE.md](ARCHITECTURE.md)**.
 
-## For hiring managers
 
-**Resume line:** Built a local RAG app for blood-test literacy with HIPAA-*aligned* controls (PHI redaction, labs never indexed, age/sex as bands only), FAISS instead of Chroma on Windows, question-scoped marker prompts, pytest + GitHub Actions, and an eval set for grounding and scope.
+
+Built a local RAG app for blood-test literacy with HIPAA-*aligned* controls (PHI redaction, labs never indexed, age/sex as bands only), FAISS instead of Chroma on Windows, question-scoped marker prompts, pytest + GitHub Actions, and an eval set for grounding and scope.
 
 This is **not** HIPAA-certified and **not** a medical device.
 
