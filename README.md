@@ -4,6 +4,14 @@ Educational RAG assistant for **blood-test literacy**. It retrieves from NIH/PMC
 
 It is **not** a medical device, **not** a diagnosis engine, and **not** HIPAA-certified. The controls below are the kind a small company would put in place to *align* with HIPAA and AWS Responsible AI. A covered entity still needs a BAA, policies, and a security program.
 
+## Demo
+
+Walkthrough (index curated corpus → parse a lab PDF in memory → scoped Q&A with sources):
+
+**[Watch the Loom demo](https://www.loom.com/share/3ee0296261524997acd4a0151ce18b53)**
+
+No clone required to see the app. Local setup is below if you want to run it.
+
 ## What this repo keeps (from the prior RAG app)
 
 - PDF load → chunk → FAISS → Ollama retrieve-and-generate
