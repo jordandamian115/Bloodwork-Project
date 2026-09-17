@@ -12,6 +12,22 @@ Index the curated corpus, parse a lab PDF in memory, then ask scoped questions w
 
 System design, data flow, trust boundaries, and AWS mapping: **[ARCHITECTURE.md](ARCHITECTURE.md)**.
 
+## For hiring managers
+
+**Resume line:** Built a local RAG app for blood-test literacy with HIPAA-*aligned* controls (PHI redaction, labs never indexed, age/sex as bands only), FAISS instead of Chroma on Windows, question-scoped marker prompts, pytest + GitHub Actions, and an eval set for grounding and scope.
+
+This is **not** HIPAA-certified and **not** a medical device.
+
+### Questions to expect
+
+**Why not index lab PDFs?** Knowledge is NIH/PMC teaching text. Labs are ephemeral session state. Indexing a report would embed identifiers and mix one person’s values into every later answer.
+
+**How do you know it isn’t hallucinating?** Offline evals lock scope and guardrails in CI. Retrieval/live evals check that named therapies appear only if they were in retrieved chunks. The prompt must refuse ranges that are not in context; llama3.2 can still drift, which is why evals exist.
+
+**Why FAISS instead of Chroma?** Chroma’s embedding sidecar used `/tokenize` and crashed on this Windows setup. FAISS is in-process with batched Ollama embeddings (`SafeOllamaEmbeddings`). The folder is still named `chroma_db/` from the earlier app.
+
+**What would a covered entity still need?** A BAA, HIPAA-eligible services only, KMS, private VPC, IAM, CloudTrail, and a real security program. Optional flags map regex PHI to Comprehend Medical and local guardrails to Bedrock `ApplyGuardrail`. Turning those on without the rest does not make the app eligible.
+
 ## What this repo keeps (from the prior RAG app)
 
 - PDF load → chunk → FAISS → Ollama retrieve-and-generate
