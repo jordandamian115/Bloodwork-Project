@@ -6,11 +6,9 @@ It is **not** a medical device, **not** a diagnosis engine, and **not** HIPAA-ce
 
 ## Demo
 
-Walkthrough (index curated corpus → parse a lab PDF in memory → scoped Q&A with sources):
+**[Loom walkthrough of the Bloodwork Project](https://www.loom.com/share/3ee0296261524997acd4a0151ce18b53)**
 
-**[Watch the Loom demo](https://www.loom.com/share/3ee0296261524997acd4a0151ce18b53)**
-
-No clone required to see the app. Local setup is below if you want to run it.
+Index the curated corpus, parse a lab PDF in memory, then ask scoped questions with sources.
 
 ## What this repo keeps (from the prior RAG app)
 
