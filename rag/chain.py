@@ -26,7 +26,10 @@ Retrieved scientific context:
 
 Question: {input}
 
-Respond with:
+If structured findings are "none in scope", do not use the numbered template. Reply in a few sentences: the asked marker was not parsed, and do not discuss unrelated retrieved analytes.
+If the question asks for SSN, name, address, or other identifiers, refuse.
+
+Otherwise respond with:
 1. ONLY discuss the structured findings listed below. Do not enumerate other bloodwork markers.
 2. Compare those findings to literature ranges **only if those ranges appear in the retrieved context**
 3. Possible health themes the papers associate with those findings (not a diagnosis)

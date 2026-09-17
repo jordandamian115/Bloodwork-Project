@@ -4,10 +4,9 @@ from __future__ import annotations
 
 from security.audit import log_event
 from security.aws_adapters import get_phi_detector, optional_bedrock_check
-from security.guardrails import check_input, sanitize_output
-
 from agents.markers import expand_retrieval_query
 from rag.chain import chain_inputs
+from security.guardrails import check_input, sanitize_output, unmatched_marker_refusal
 
 
 def run_interpretation(chain, question: str, lab_context: str, indexed_file: str = "") -> dict:
@@ -23,6 +22,22 @@ def run_interpretation(chain, question: str, lab_context: str, indexed_file: str
             "blocked": True,
             "answer": input_check.message,
             "reason": input_check.reason,
+            "sources": [],
+            "warnings": [],
+        }
+
+    unmatched = unmatched_marker_refusal(question, lab_context)
+    if unmatched:
+        log_event(
+            "query_unmatched_marker",
+            question=question,
+            indexed_file=indexed_file,
+            reason="unmatched_marker",
+        )
+        return {
+            "blocked": False,
+            "answer": unmatched,
+            "reason": "unmatched_marker",
             "sources": [],
             "warnings": [],
         }
